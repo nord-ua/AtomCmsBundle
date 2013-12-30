@@ -1,0 +1,32 @@
+{
+    "name": "nord-ua/atom-cms-bundle",
+    "type": "symfony-bundle",
+    "description": "Simplest CMS ever.",
+    "keywords": ["cms", "content"],
+    "homepage": "https://github.com/nord-ua/AtomCmsBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ryabenko Sergey",
+            "email": "ryabenko.sergey@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "~2.1"
+    },
+    "require-dev": {
+        "twig/twig": "~1.5",
+        "doctrine/mongodb-odm-bundle": "3.0.*@dev"
+    },
+    "autoload": {
+        "psr-0": { "NordUa\\AtomCmsBundle": "" }
+    },
+    "target-dir": "NordUa/AtomCmsBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{% extends "::admin.html.twig" %}
+
+{% block title %}Управление cms страницами{% endblock title %}
+
+{% block content %}
+<h1>CMS страницы</h1>
+<table class="table table-hover table-bordered table-striped">
+  <thead>
+    <tr>
+      <th width="3%">&nbsp;</th>
+      <th>Название</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for page in pages %}
+    <tr>
+      <td>
+        {% include('CommonCmsBundle:Admin:_page_controlls.html.twig') %}
+      </td>
+      <td>
+        <a href="{{path ('admin_cms_page_show', {'id': page.id}) }}">{{page.title}}</a>
+      </td>
+      <td data-container="description">{{page.url}}</td>
+    </tr>
+{% else %}
+    <tr><td colspan="4">Нет страниц</td></tr>
+{% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="3">
+        <a class="btn btn-default pull-right" href="{{ path('admin_cms_page_new') }}">Создать страницу</a>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+{% endblock %}
+
+{% block admin_cms_page_index_active %}active{% endblock %}
