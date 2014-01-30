@@ -23,7 +23,7 @@ class AdminController extends BaseController
    */
   public function indexAction()
   {
-    $pages = $this->get('doctrine.odm.mongodb.document_manager')->getRepository('AtomCms:CmsPage')->findAll();
+    $pages = $this->get('doctrine.odm.mongodb.document_manager')->getRepository('AtomCmsBundle:CmsPage')->findAll();
 
     return array(
       'pages' => $pages
@@ -33,7 +33,7 @@ class AdminController extends BaseController
 
   /**
    * @Route("/new", name="admin_cms_page_new")
-   * @Template("CommonCmsBundle:Admin:edit.html.twig")
+   * @Template("@AtomCms/Admin/edit.html.twig")
    */
   public function newAction(Request $request)
   {
@@ -65,7 +65,7 @@ class AdminController extends BaseController
 
   /**
    * @Route("/{id}/edit", name="admin_cms_page_edit")
-   * @Template("CommonCmsBundle:Admin:edit.html.twig")
+   * @Template("@AtomCms/Admin/edit.html.twig")
    */
   public function editAction($id, Request $request)
   {
@@ -126,7 +126,7 @@ class AdminController extends BaseController
    * @return CmsPage
    */
   protected function getCmsPage($id) {
-    $page = $this->get('doctrine.odm.mongodb.document_manager')->getRepository('AtomCms:CmsPage')->find($id);
+    $page = $this->get('doctrine.odm.mongodb.document_manager')->getRepository('AtomCmsBundle:CmsPage')->find($id);
 
     if (is_null($page)) {
       throw $this->createNotFoundException('Page not found');

@@ -18,7 +18,7 @@
             <span class="panel-title">Управление</span>
           </div>
           <div class="panel-body">
-            {% include('CommonCmsBundle:Admin:_page_controlls.html.twig') %}
+            {% include('@AtomCms/Admin/_page_controlls.html.twig') %}
           </div>
         </div>
       </div>
@@ -34,11 +34,3 @@
   </div>
 
 {% endblock content %}
-
-{% block stylesheets %}
-  {% include '@partials/fotorama_assets.css.twig' %}
-{% endblock stylesheets %}
-
-{% block javascripts %}
-  {% include '@partials/fotorama_assets.html.twig' %}
-{% endblock javascripts %}

@@ -1,6 +1,6 @@
 services:
     atom_cms:
-        class: NordUa\AtomCmsBundle\Templating\CmsVariables
+        class: NordUa\AtomCmsBundle\Templating\AtomCmsTwig
         arguments: [@service_container]
         tags:
             - {name: twig.extension}

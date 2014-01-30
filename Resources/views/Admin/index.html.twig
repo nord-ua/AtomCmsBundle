@@ -16,7 +16,7 @@
 {% for page in pages %}
     <tr>
       <td>
-        {% include('CommonCmsBundle:Admin:_page_controlls.html.twig') %}
+        {% include('@AtomCms/Admin/_page_controlls.html.twig') %}
       </td>
       <td>
         <a href="{{path ('admin_cms_page_show', {'id': page.id}) }}">{{page.title}}</a>

@@ -41,23 +41,3 @@
 
   </form>
 {% endblock content %}
-
-{% block stylesheets %}
-  {% include '@partials/redactor_assets.css.twig' %}
-{% endblock stylesheets %}
-
-
-{% block javascripts %}
-  {% include '@partials/redactor_assets.html.twig' %}
-  <script type="text/javascript">
-    $(function () {
-      window.onbeforeunload = function() {
-        return "Вы потеряете данные, которые не были сохранены.";
-      };
-
-      VolunteerPostBundle.initRedactorFor('cms_page_content');
-    });
-  </script>
-{% endblock javascripts %}
-
-{% block admin_cms_page_index_active %}active{% endblock %}
