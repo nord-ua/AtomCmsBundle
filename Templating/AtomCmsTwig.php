@@ -5,7 +5,7 @@ namespace NordUa\AtomCmsBundle\Templating;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * GroulionVariables is the entry point for CmsBundle global variables in Twig templates.
+ * This class is the entry point for AtomCmsBundle global variables in Twig templates.
  *
  * @author Sergey Ryabenko <ryabenko.sergey@gmail.com>
  */
@@ -40,12 +40,12 @@ class AtomCmsTwig extends \Twig_Extension {
 
   public function getGlobals() {
     return array(
-      'cms' => $this
+      'atom_cms' => $this
     );
   }
 
   public function getName() {
-    return 'cms';
+    return 'atom_cms';
   }
 
   public function getFilters() {
@@ -60,7 +60,10 @@ class AtomCmsTwig extends \Twig_Extension {
     return array(
       new \Twig_SimpleFunction('cms_page', array($this, 'cmsPage')),
       new \Twig_SimpleFunction('is_cms_page', array($this, 'isCmsPage')),
-    );
+      new \Twig_SimpleFunction('atom_cms_render', array($this, 'render'), array(
+          'is_safe' => array('html')
+        ))
+      );
   }
 
   public function cmsPage($value = null) {
@@ -73,6 +76,15 @@ class AtomCmsTwig extends \Twig_Extension {
 
   public function isCmsPage($value) {
     return $this->cmsPage == $value;
+  }
+
+  public function render($page) {
+    $doc = $this->container->get('doctrine_mongodb.odm.default_document_manager')->getRepository('AtomCmsBundle:CmsPage')->findOneByUrl($page);
+    if (!$doc) {
+      return $this->container->get('translator')->trans('AtomCms page "%page%" not found.', array('%page%' => $page), 'AtomCms');
+    }
+
+    return $doc->getContent();
   }
 
 }
